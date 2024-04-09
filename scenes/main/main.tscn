@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://8q7q3gk7hb7t"]
+
+[ext_resource type="Script" path="res://scenes/main/Play.cs" id="1_2bjxw"]
+[ext_resource type="Script" path="res://scenes/main/Quit.cs" id="2_h247i"]
+
+[node name="main" type="Node2D"]
+
+[node name="Play" type="Button" parent="."]
+offset_left = 80.0
+offset_top = 248.0
+offset_right = 854.0
+offset_bottom = 453.0
+theme_override_font_sizes/font_size = 40
+text = "Play"
+script = ExtResource("1_2bjxw")
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 376.0
+offset_top = 480.0
+offset_right = 1062.0
+offset_bottom = 616.0
+theme_override_font_sizes/font_size = 29
+text = "Quit"
+script = ExtResource("2_h247i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 520.0
+offset_top = 80.0
+offset_right = 832.0
+offset_bottom = 192.0
+theme_override_font_sizes/normal_font_size = 44
+text = "PING PONG V2"
+
+[connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
+[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]

@@ -9,8 +9,9 @@ public partial class level : Node2D
 	
 	if(player != null)
 	{
+		var pong = GetNode("Pong") as pong;
+		pong.Reset();
 		player.Score++;
-		GD.Print(player.Score);
 	}
 }
 
@@ -20,8 +21,9 @@ private void _on_l_goal_body_entered(Node2D body)
 	
 	if(player != null)
 	{
+		var pong = GetNode("Pong") as pong;
+		pong.Reset();
 		player.Score++;
-		GD.Print(player.Score);
 	}
 }
 

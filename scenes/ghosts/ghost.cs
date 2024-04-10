@@ -13,8 +13,8 @@ public partial class ghost : CharacterBody2D
 		double angle = random.NextDouble() * 2 * Math.PI;
 
 		velocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-
 		velocity *= Speed;
+
 		Velocity = velocity;
 		MoveAndSlide();
 	}

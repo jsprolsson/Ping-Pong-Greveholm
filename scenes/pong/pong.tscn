@@ -18,6 +18,8 @@ animations = [{
 size = Vector2(20, 27)
 
 [node name="Pong" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 11
 script = ExtResource("1_40w8g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

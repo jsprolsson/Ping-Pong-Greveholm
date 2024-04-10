@@ -29,6 +29,8 @@ scale = Vector2(1.0425, 1.09565)
 texture = ExtResource("1_aduy2")
 
 [node name="CShapes" type="StaticBody2D" parent="Background"]
+collision_layer = 2
+collision_mask = 0
 
 [node name="LWall" type="CollisionShape2D" parent="Background/CShapes"]
 position = Vector2(-599.52, -0.456329)
@@ -43,7 +45,7 @@ position = Vector2(599.52, -17.3413)
 shape = SubResource("RectangleShape2D_7rdrk")
 
 [node name="Floor" type="CollisionShape2D" parent="Background/CShapes"]
-position = Vector2(8.63309, 435.358)
+position = Vector2(12.47, 443.572)
 shape = SubResource("RectangleShape2D_t47yc")
 
 [node name="Player" parent="." instance=ExtResource("2_52rf0")]
@@ -56,7 +58,7 @@ position = Vector2(-504, -148)
 [node name="Pong" parent="." instance=ExtResource("3_b53gm")]
 
 [node name="Ghost" parent="." instance=ExtResource("4_uplt3")]
-position = Vector2(635, 66)
+position = Vector2(623, 64)
 
 [node name="Ghost2" parent="." instance=ExtResource("4_uplt3")]
 

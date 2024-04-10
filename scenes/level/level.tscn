@@ -1,64 +1,93 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0dgnjknp7x6f"]
+[gd_scene load_steps=15 format=3 uid="uid://c0dgnjknp7x6f"]
 
+[ext_resource type="Script" path="res://scenes/level/level.cs" id="1_34eur"]
 [ext_resource type="Texture2D" uid="uid://5q3dqdq0umg4" path="res://scenes/level/level.png" id="1_aduy2"]
 [ext_resource type="PackedScene" uid="uid://26ied0gqdotw" path="res://scenes/player/Player.tscn" id="2_52rf0"]
 [ext_resource type="PackedScene" uid="uid://dfxuexfmentvy" path="res://scenes/pong/pong.tscn" id="3_b53gm"]
 [ext_resource type="PackedScene" uid="uid://bmsbjfqrv21cl" path="res://scenes/ghosts/ghost.tscn" id="4_uplt3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dy86o"]
-size = Vector2(90.1679, 641.628)
+[ext_resource type="Script" path="res://scenes/level/ScoreL.cs" id="6_2t51f"]
+[ext_resource type="Script" path="res://scenes/level/ScoreR.cs" id="7_swrxn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmhdj"]
 size = Vector2(1212.47, 130.06)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rdrk"]
-size = Vector2(90.1679, 641.628)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t47yc"]
 size = Vector2(1272.9, 274.266)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl66h"]
+size = Vector2(93.0456, 616.985)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhyjx"]
+size = Vector2(94.0049, 601.469)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fv1te"]
+size = Vector2(92.0863, 616.985)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6a50"]
+size = Vector2(94.9639, 616.985)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_np54k"]
 radius = 45.0
 height = 138.0
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_34eur")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(577, 323)
 scale = Vector2(1.0425, 1.09565)
 texture = ExtResource("1_aduy2")
 
-[node name="CShapes" type="StaticBody2D" parent="Background"]
+[node name="TopBottom" type="StaticBody2D" parent="Background"]
 collision_layer = 2
 collision_mask = 0
 
-[node name="LWall" type="CollisionShape2D" parent="Background/CShapes"]
-position = Vector2(-599.52, -0.456329)
-shape = SubResource("RectangleShape2D_dy86o")
-
-[node name="Top" type="CollisionShape2D" parent="Background/CShapes"]
+[node name="Top" type="CollisionShape2D" parent="Background/TopBottom"]
 position = Vector2(-4.79617, -361.429)
 shape = SubResource("RectangleShape2D_xmhdj")
 
-[node name="RWall" type="CollisionShape2D" parent="Background/CShapes"]
-position = Vector2(599.52, -17.3413)
-shape = SubResource("RectangleShape2D_7rdrk")
-
-[node name="Floor" type="CollisionShape2D" parent="Background/CShapes"]
+[node name="Floor" type="CollisionShape2D" parent="Background/TopBottom"]
 position = Vector2(12.47, 443.572)
 shape = SubResource("RectangleShape2D_t47yc")
 
+[node name="LGoal" type="Area2D" parent="Background"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/LGoal"]
+position = Vector2(-600, 12.7778)
+shape = SubResource("RectangleShape2D_sl66h")
+
+[node name="RGoal" type="Area2D" parent="Background"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RGoal"]
+position = Vector2(598.561, 5.01974)
+shape = SubResource("RectangleShape2D_hhyjx")
+
+[node name="Walls" type="StaticBody2D" parent="Background"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="LWall" type="CollisionShape2D" parent="Background/Walls"]
+position = Vector2(-599.52, 12.7778)
+shape = SubResource("RectangleShape2D_fv1te")
+
+[node name="RWall" type="CollisionShape2D" parent="Background/Walls"]
+position = Vector2(599.041, 12.7777)
+shape = SubResource("RectangleShape2D_k6a50")
+
 [node name="Player" parent="." instance=ExtResource("2_52rf0")]
-position = Vector2(429, 153)
+position = Vector2(491, 127)
 scale = Vector2(1.0425, 1.09565)
 
 [node name="Player2" parent="." instance=ExtResource("2_52rf0")]
 position = Vector2(-504, -148)
 
 [node name="Pong" parent="." instance=ExtResource("3_b53gm")]
+position = Vector2(140, -46)
 
 [node name="Ghost" parent="." instance=ExtResource("4_uplt3")]
-position = Vector2(623, 64)
+position = Vector2(600, 70)
 
 [node name="Ghost2" parent="." instance=ExtResource("4_uplt3")]
 
@@ -69,4 +98,32 @@ frame = 1
 position = Vector2(485, 250)
 shape = SubResource("CapsuleShape2D_np54k")
 
+[node name="Scoreboard" type="CanvasLayer" parent="."]
+
+[node name="ScoreL" type="Label" parent="Scoreboard"]
+offset_left = 384.0
+offset_top = 24.0
+offset_right = 499.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 60
+text = "5"
+horizontal_alignment = 1
+script = ExtResource("6_2t51f")
+
+[node name="ScoreR" type="Label" parent="Scoreboard"]
+offset_left = 640.0
+offset_top = 24.0
+offset_right = 755.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.996078, 0.996078, 0.996078, 1)
+theme_override_font_sizes/font_size = 60
+text = "12"
+horizontal_alignment = 1
+script = ExtResource("7_swrxn")
+
+[connection signal="body_entered" from="Background/LGoal" to="." method="_on_l_goal_body_entered"]
+[connection signal="body_entered" from="Background/RGoal" to="." method="_on_r_goal_body_entered"]
+
+[editable path="Player2"]
 [editable path="Ghost2"]

@@ -3,31 +3,28 @@ using System;
 
 public partial class pong : CharacterBody2D
 {
+	public pong()
+	{
+		random = new Random();
+	}
 	private float Speed = 400f;
+	private Random random;
 
 public override void _Ready()
 {
-	Vector2 velocity = Velocity;
-	var random = new Random();
+	Vector2 velocity;
 
-	// Limit the angle to a range between 45 and 135 degrees (in radians) for the left direction
-	// and between 225 and 315 degrees for the right direction.
-	double angle;
+	// Choose a direction: left or right.
 	if (random.Next(0, 2) == 0)
 	{
-		// Angle for the left direction
-		angle = (random.NextDouble() * (Math.PI / 2)) + Math.PI / 4;
+		// Left direction
+		velocity = new Vector2(-1, 0);
 	}
 	else
 	{
-		// Angle for the right direction
-		angle = (random.NextDouble() * (Math.PI / 2)) + 5 * Math.PI / 4;
+		// Right direction
+		velocity = new Vector2(1, 0);
 	}
-
-	// Convert angle from degrees to radians
-	angle = angle * (Math.PI / 180);
-
-	velocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
 
 	velocity *= Speed;
 	Velocity = velocity;
@@ -37,6 +34,7 @@ public override void _Ready()
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
+		
 		var collisionInfo = MoveAndCollide(Velocity * (float)delta);
 		
 		if(collisionInfo != null) {
@@ -45,6 +43,16 @@ public override void _Ready()
 
 		if (collisionInfo != null)
 			Velocity = Velocity.Bounce(collisionInfo.GetNormal());
+	}
+
+
+	public override void _Process(double delta)
+	{
+		// Move the pong
+		if (Input.IsActionPressed("r"))
+	{
+		Reset();
+	}
 	}
 
 	public void Reset(){

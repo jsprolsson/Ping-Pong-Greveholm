@@ -11,7 +11,6 @@ public partial class ScoreL : Label
 		if (player != null)
 		{
 			var score = player.Score.ToString();
-			GD.Print(score);
 			Text = score;
 		}
 	}

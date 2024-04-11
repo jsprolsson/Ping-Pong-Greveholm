@@ -7,7 +7,7 @@ public partial class pong : CharacterBody2D
 	{
 		random = new Random();
 	}
-	private float Speed = 500f;
+	private float Speed = 950f;
 	private Random random;
 
 	public override void _Ready()

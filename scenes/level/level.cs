@@ -11,6 +11,7 @@ public partial class level : Node2D
 	{
 		var pong = GetNode("Pong") as pong;
 		pong.Reset();
+		SoundGoal();
 		player.Score++;
 	}
 }
@@ -23,8 +24,15 @@ private void _on_l_goal_body_entered(Node2D body)
 	{
 		var pong = GetNode("Pong") as pong;
 		pong.Reset();
+		SoundGoal();
 		player.Score++;
 	}
+}
+
+private void SoundGoal(){
+	var goal = GetNode("Goal") as AudioStreamPlayer;
+	GD.Print(goal);
+	goal.Play();
 }
 
 

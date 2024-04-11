@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0dgnjknp7x6f"]
+[gd_scene load_steps=20 format=3 uid="uid://c0dgnjknp7x6f"]
 
 [ext_resource type="Script" path="res://scenes/level/level.cs" id="1_34eur"]
 [ext_resource type="Texture2D" uid="uid://5q3dqdq0umg4" path="res://scenes/level/level.png" id="1_aduy2"]
@@ -8,7 +8,10 @@
 [ext_resource type="Script" path="res://scenes/level/ScoreL.cs" id="6_2t51f"]
 [ext_resource type="Script" path="res://scenes/level/ScoreR.cs" id="7_swrxn"]
 [ext_resource type="AudioStream" uid="uid://c17aoc7o7c4jo" path="res://Mysteriet På Greveholm [PC] - Soundtrack 2.mp3" id="8_n01js"]
-[ext_resource type="Script" path="res://scenes/level/AudioStreamPlayer.cs" id="9_o82ug"]
+[ext_resource type="Script" path="res://scenes/level/BackgroundMusic.cs" id="9_04yeu"]
+[ext_resource type="AudioStream" uid="uid://cldvgrxgjc1bk" path="res://scenes/level/goal.mp3" id="10_w18q4"]
+[ext_resource type="Script" path="res://scenes/level/Goal.cs" id="11_mhqk2"]
+[ext_resource type="AudioStream" uid="uid://cno8bavc3qs2" path="res://scenes/level/paddle.mp3" id="12_5x53c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmhdj"]
 size = Vector2(1212.47, 130.06)
@@ -124,16 +127,25 @@ text = "12"
 horizontal_alignment = 1
 script = ExtResource("7_swrxn")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_n01js")
 volume_db = -9.369
 pitch_scale = 0.8
 autoplay = true
-script = ExtResource("9_o82ug")
+script = ExtResource("9_04yeu")
+
+[node name="Goal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_w18q4")
+volume_db = -19.22
+script = ExtResource("11_mhqk2")
+
+[node name="Paddle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_5x53c")
+volume_db = -19.676
 
 [connection signal="body_entered" from="Background/LGoal" to="." method="_on_l_goal_body_entered"]
 [connection signal="body_entered" from="Background/RGoal" to="." method="_on_r_goal_body_entered"]
-[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="_on_finished"]
 
 [editable path="Player2"]
 [editable path="Ghost2"]

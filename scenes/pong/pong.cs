@@ -37,14 +37,24 @@ public partial class pong : CharacterBody2D
 
 		var collisionInfo = MoveAndCollide(Velocity * (float)delta);
 		if(collisionInfo != null){
-			GD.Print("collision info wasnt null");
+			var collidingObj = collisionInfo.GetCollider();
+
+			if(collidingObj != null && collidingObj is CharacterBody2D body2d){
+				
+				if(body2d.Name == "Player" || body2d.Name == "Player2"){
+					var root = GetTree().Root.GetNode("Level") as Node2D;
+					var audio = root.GetNode("Paddle") as AudioStreamPlayer;
+
+					if(audio != null)
+						audio.Play();
+				}
+
+			}
 		Vector2 newVelocity = Velocity.Bounce(collisionInfo.GetNormal());
 
-		// 65% chance to modify the bounce angle slightly
 
 		// Add a small random angle to the new velocity
 		float angleOffset = (float)(random.NextDouble() * Math.PI / 18) - (float)(Math.PI / 36); // +/- 2.5 degrees
-		GD.Print("Angled: " + angleOffset);
 		newVelocity = newVelocity.Rotated(angleOffset);
 
 		Velocity = newVelocity;

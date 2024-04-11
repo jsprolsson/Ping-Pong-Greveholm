@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0dgnjknp7x6f"]
+[gd_scene load_steps=21 format=3 uid="uid://c0dgnjknp7x6f"]
 
 [ext_resource type="Script" path="res://scenes/level/level.cs" id="1_34eur"]
 [ext_resource type="Texture2D" uid="uid://5q3dqdq0umg4" path="res://scenes/level/level.png" id="1_aduy2"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cldvgrxgjc1bk" path="res://scenes/level/goal.mp3" id="10_w18q4"]
 [ext_resource type="Script" path="res://scenes/level/Goal.cs" id="11_mhqk2"]
 [ext_resource type="AudioStream" uid="uid://cno8bavc3qs2" path="res://scenes/level/paddle.mp3" id="12_5x53c"]
+[ext_resource type="Script" path="res://scenes/level/PongSpeed.cs" id="13_mwfyg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmhdj"]
 size = Vector2(1212.47, 130.06)
@@ -136,12 +137,18 @@ script = ExtResource("9_04yeu")
 
 [node name="Goal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_w18q4")
-volume_db = -19.22
+volume_db = -22.499
 script = ExtResource("11_mhqk2")
 
 [node name="Paddle" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_5x53c")
 volume_db = -19.676
+
+[node name="PongSpeed" type="Label" parent="."]
+offset_left = 472.0
+offset_right = 656.0
+offset_bottom = 32.0
+script = ExtResource("13_mwfyg")
 
 [connection signal="body_entered" from="Background/LGoal" to="." method="_on_l_goal_body_entered"]
 [connection signal="body_entered" from="Background/RGoal" to="." method="_on_r_goal_body_entered"]

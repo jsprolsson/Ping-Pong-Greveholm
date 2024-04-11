@@ -7,7 +7,7 @@ public partial class pong : CharacterBody2D
 	{
 		random = new Random();
 	}
-	private float Speed = 950f;
+	public float Speed = 950f;
 	private Random random;
 
 	public override void _Ready()
@@ -31,11 +31,11 @@ public partial class pong : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-
 		var collisionInfo = MoveAndCollide(Velocity * (float)delta);
+		float angleOffset;
+
 		if(collisionInfo != null){
 			var collidingObj = collisionInfo.GetCollider();
 
@@ -47,16 +47,16 @@ public partial class pong : CharacterBody2D
 
 					if(audio != null)
 						audio.Play();
+				
+				angleOffset = (float)(random.NextDouble() * Math.PI / 4.5) - (float)(Math.PI / 9);
 				}
 
 			}
-		Vector2 newVelocity = Velocity.Bounce(collisionInfo.GetNormal());
 
-
-		// Add a small random angle to the new velocity
-		float angleOffset = (float)(random.NextDouble() * Math.PI / 18) - (float)(Math.PI / 36); // +/- 2.5 degrees
+			Vector2 newVelocity = Velocity.Bounce(collisionInfo.GetNormal());
+		angleOffset = (float)(random.NextDouble() * Math.PI / 18) - (float)(Math.PI / 36);
+		
 		newVelocity = newVelocity.Rotated(angleOffset);
-
 		Velocity = newVelocity;
 
 		}
@@ -70,6 +70,19 @@ public partial class pong : CharacterBody2D
 		if (Input.IsActionPressed("r"))
 		{
 			Reset();
+		}
+
+		
+		if(Input.IsActionPressed("z") && Speed < 10000)
+		{
+			Speed += 10;
+		}
+		else if(Input.IsActionPressed("x"))
+		{
+			Speed -= 10;
+		}
+		else if(Input.IsActionPressed("esc")){
+			GetTree().ChangeSceneToFile("res://scenes/main/main.tscn");
 		}
 	}
 

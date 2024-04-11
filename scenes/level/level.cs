@@ -31,11 +31,8 @@ private void _on_l_goal_body_entered(Node2D body)
 
 private void SoundGoal(){
 	var goal = GetNode("Goal") as AudioStreamPlayer;
-	GD.Print(goal);
 	goal.Play();
 }
-
-
 }
 
 

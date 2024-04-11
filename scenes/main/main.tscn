@@ -37,23 +37,26 @@ offset_top = 65.0
 offset_right = 1088.0
 offset_bottom = 199.0
 theme_override_font_sizes/normal_font_size = 44
-text = "Mysteriet hos greveping pong"
+text = "Mysteriet på greveping pong"
 
 [node name="CheckButton" type="CheckButton" parent="."]
-offset_left = 159.0
-offset_top = 117.0
-offset_right = 414.0
-offset_bottom = 224.0
+offset_left = 92.0
+offset_top = 441.0
+offset_right = 259.0
+offset_bottom = 551.0
 text = "SPLITSCREEN"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 30.0
-offset_top = 21.0
-offset_right = 370.0
-offset_bottom = 221.0
+offset_left = 17.0
+offset_top = 15.0
+offset_right = 357.0
+offset_bottom = 215.0
 text = "R - RESET BALL
 WASD - PLAYER1
-ARROW-KEYS - PLAYER2"
+ARROW-KEYS - PLAYER2 (IF SPLITSCREEN = TRUE)
+Z - INCREASE BALL SPEED (MAX 10000)
+X - DECREASE BALL SPEED
+ESCAPE - QUIT TO MENU"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

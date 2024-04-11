@@ -14,9 +14,6 @@ public partial class Player : CharacterBody2D
         if (!splitScreen && Name == "Player2")
         {
             ball = GetNode<CharacterBody2D>("../Pong");
-			if(ball != null){ 
-				GD.Print("Found ball");
-			}
         }
     }
 

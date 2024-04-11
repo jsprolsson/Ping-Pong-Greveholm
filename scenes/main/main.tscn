@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://8q7q3gk7hb7t"]
+[gd_scene load_steps=5 format=3 uid="uid://8q7q3gk7hb7t"]
 
 [ext_resource type="Script" path="res://scenes/main/Play.cs" id="1_2bjxw"]
+[ext_resource type="Script" path="res://scenes/main/main.cs" id="1_nsta8"]
 [ext_resource type="Script" path="res://scenes/main/Quit.cs" id="2_h247i"]
+[ext_resource type="Texture2D" uid="uid://eiogr1o0x2hk" path="res://scenes/main/leback.jpeg" id="4_fyo7m"]
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_nsta8")
+
+[node name="Leback" type="Sprite2D" parent="."]
+position = Vector2(576, 325.5)
+scale = Vector2(1.79688, 1.34375)
+texture = ExtResource("4_fyo7m")
 
 [node name="Play" type="Button" parent="."]
 offset_left = 80.0
@@ -24,12 +32,30 @@ text = "Quit"
 script = ExtResource("2_h247i")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 520.0
-offset_top = 80.0
-offset_right = 832.0
-offset_bottom = 192.0
+offset_left = 736.0
+offset_top = 65.0
+offset_right = 1088.0
+offset_bottom = 199.0
 theme_override_font_sizes/normal_font_size = 44
-text = "PING PONG V2"
+text = "Mysteriet hos greveping pong"
+
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 159.0
+offset_top = 117.0
+offset_right = 414.0
+offset_bottom = 224.0
+text = "SPLITSCREEN"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 30.0
+offset_top = 21.0
+offset_right = 370.0
+offset_bottom = 221.0
+text = "R - RESET BALL
+WASD - PLAYER1
+ARROW-KEYS - PLAYER2"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]

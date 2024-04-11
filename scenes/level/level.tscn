@@ -79,11 +79,11 @@ position = Vector2(599.041, 12.7777)
 shape = SubResource("RectangleShape2D_k6a50")
 
 [node name="Player" parent="." instance=ExtResource("2_52rf0")]
-position = Vector2(491, 127)
+position = Vector2(-552, 96)
 scale = Vector2(1.0425, 1.09565)
 
 [node name="Player2" parent="." instance=ExtResource("2_52rf0")]
-position = Vector2(-504, -148)
+position = Vector2(480, 152)
 
 [node name="Pong" parent="." instance=ExtResource("3_b53gm")]
 position = Vector2(140, -46)
